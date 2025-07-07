@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SIEM Threat Detector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Log Stream Analyzer</h1>
+  <form method="POST" action="/logs">
+    <textarea name="log_data" placeholder="Paste log stream here..."></textarea>
+    <button type="submit">Analyze Logs</button>
+  </form>
+
+  {% if alerts %}
+  <div class="alerts">
+    <h2>Detected Alerts</h2>
+    <ul>
+      {% for alert in alerts %}
+        <li>{{ alert.type }} - {{ alert.message }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</body>
+</html>
